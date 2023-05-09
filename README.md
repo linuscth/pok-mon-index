@@ -1,1 +1,1 @@
-# pokimon-index
+# pokèmon-index
