@@ -27,10 +27,9 @@ fetch(pokeAPIcards)
         }
     });
 
-    $( function() {
-       
-        $( "#PokeName" ).autocomplete({
-          source: pokemonList
-        });
-      } );
-      console.log(pokemonList);
+      $( "#PokeName" ).autocomplete({
+        source: function(request, response) {
+          var results = $.ui.autocomplete.filter(pokemonList, request.term);
+          response(results.slice(0, 10));
+        }
+      });
