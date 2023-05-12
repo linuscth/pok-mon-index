@@ -21,6 +21,8 @@ fetch(pokeAPIcards)
             $(pokeCard).append(pEl);
             $(pokeCard).append(pokeImg);
             $(pokeCards).append(pokeCard);
+            $(pokeCard).data('name', pokemonName);
+            
         }
     });
 
