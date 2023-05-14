@@ -22,6 +22,26 @@
         <span>to Team Building</span>
     </header>
     <div class="main">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalInfoDiv">
+                    <h6 class="modalPokemonName"></h6>
+                    <img class="modalImg" alt="chosen pokemon picuture">
+                    <div class="PokemonStat">
+                        <p class="pokeHeight">pokeHeight</p>
+                        <p class="pokeWeight">pokeWeight</p>
+                        <p class="pokeType">pokeType</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
         <form>
             <label for="PokeName">Pokemon Name:</label><br>
             <input type="text" id="PokeName" name="PokeName" placeholder="Arceus"><br>
@@ -31,13 +51,24 @@
         <div class="pokeCards grid grid-cols-5 gap-4 my-8"></div>
 
 
+
+
+
+
+
+
+
+
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="./assets/script.js"></script>
-    
+
 
 </body>
 
