@@ -92,7 +92,7 @@ $(document).on('click', '.clickModalBtn', function () {
           $(pokeWeight).text('Weight: ' + chosenPokemonWeight)
           $(pokeType).text('Type(s): ' + chosenPokemonType.toString())
 
-         
+
 
 
         })
@@ -121,22 +121,23 @@ $(spanClose).click(function () {
 });
 
 // scrolls down to searched pokemon and handles invalid searches
-$( '#search-btn' ).on('click', function() {
-  var name = $( '#PokeName' ).val();
+$('#search-btn').on('click', function () {
+  var name = $('#PokeName').val();
   if (pokemonList.includes(name)) {
-    $( "#PokeName" ).attr("style", "border:");
-    $( "#searchform").removeClass('invalid');
-    var pokeId = "#" + $( '#PokeName' ).val();
+    $("#PokeName").attr("style", "border:");
+    $("#searchform").removeClass('invalid');
+    var pokeId = "#" + $('#PokeName').val();
     $('html, body').animate({
-      scrollTop: $(pokeId).offset().top},
+      scrollTop: $(pokeId).offset().top
+    },
       'slow');
-    $( pokeId ).attr("style", "background-color: #ff9f30; transition: 0.5s");
-    setTimeout(function() {
-      $( pokeId ).attr("style", "background-color:; transition: 0.5s");
+    $(pokeId).attr("style", "background-color: #ff9f30; transition: 0.5s");
+    setTimeout(function () {
+      $(pokeId).attr("style", "background-color:; transition: 0.5s");
     }, 2000);
   } else {
-    $( "#PokeName" ).attr("style", "border: 2px solid red");
-    $( "#searchform").addClass('invalid');
+    $("#PokeName").attr("style", "border: 2px solid red");
+    $("#searchform").addClass('invalid');
   }
 });
 
@@ -153,10 +154,11 @@ $(document).on('click', '.addTeamBtn', function () {
 
     //var teamImgEl = $('<img>');
     //$(teamImgEl).attr('src', teamImg);
-    var pokeCardsClone = $(teamParentEl).clone().removeAttr('id');
+    var pokeCardsClone = $(teamParentEl).clone(true).removeAttr('id');
+    pokeCardsClone.find('.addTeamBtn').remove()
     console.log(pokeCardsClone);
     $(pokeCardsClone).appendTo(teamSlotDiv);
     //$(teamSlotDiv).append(teamImgEl);
     $(teamDiv).append(teamSlotDiv);
-  } 
+  }
 });
