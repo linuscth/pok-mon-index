@@ -30,16 +30,19 @@ fetch(pokeAPIcards)
       var pokeImg = $('<img class="pokeImg rounded-t-lg">');
       $(pokeImg).attr('src', pokeImages);
       var pEl = $('<p class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-center font-sans">');
-      var clickModalBtn = $('<button class="clickModalBtn">Click</button>')
+      var clickModalBtn = $('<button class="clickModalBtn">Click</button>');
       $(pEl).text(pokemonName);
       $(pokeCard).append(pEl);
       $(pokeCard).append(pokeImg);
       $(pokeCard).append(clickModalBtn);
+      var addTeamBtn = $('<button class="addTeamBtn">+Add</button>');
+      $(pokeCard).append(addTeamBtn);
       $(pokeCard).attr('id', pokemonName);
       $(pokeCards).append(pokeCard);
       // assigning datasets onto the pokeCard div tag. 
       $(pokeCard).data('name', pokemonName);
       $(pokeCard).data('num', pokeImageNumber);
+
 
     }
 
@@ -55,13 +58,16 @@ $("#PokeName").autocomplete({
 
 //event Listener when the click button on the poke card is clicked 
 $(document).on('click', '.clickModalBtn', function () {
-
+  console.log('hello');
   // the url to get pokemon stat https://pokeapi.co/api/v2/pokemon/{id or name}/
   var parentEl = $(this).parent()
+  console.log(parentEl);
   var parentDataName = parentEl.data('name')
-  var parentDataNum = parentEl.data('num')
   console.log(parentDataName);
+  var parentDataNum = parentEl.data('num')
+  console.log(parentDataNum);
   var pokedexUrl = 'https://pokeapi.co/api/v2/pokemon/' + parentDataName + '/'
+  console.log(pokedexUrl);
   fetch(pokedexUrl).then(
     function (response) {
       if (response.ok) {
@@ -86,7 +92,7 @@ $(document).on('click', '.clickModalBtn', function () {
           $(pokeWeight).text('Weight: ' + chosenPokemonWeight)
           $(pokeType).text('Type(s): ' + chosenPokemonType.toString())
 
-
+         
 
 
         })
@@ -132,4 +138,25 @@ $( '#search-btn' ).on('click', function() {
     $( "#PokeName" ).attr("style", "border: 2px solid red");
     $( "#searchform").addClass('invalid');
   }
+});
+
+// event listener to create a new team of pokemon
+$(document).on('click', '.addTeamBtn', function () {
+  var teamParentEl = $(this).parent()
+  var teamDataName = teamParentEl.data('name')
+  var teamDataNum = teamParentEl.data('num')
+  //var teamImg = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + teamDataNum + '.png'
+  var teamDiv = $('.team');
+
+  if (teamDiv.children().length < 6) {
+    var teamSlotDiv = $('<div class="slot">');
+
+    //var teamImgEl = $('<img>');
+    //$(teamImgEl).attr('src', teamImg);
+    var pokeCardsClone = $(teamParentEl).clone().removeAttr('id');
+    console.log(pokeCardsClone);
+    $(pokeCardsClone).appendTo(teamSlotDiv);
+    //$(teamSlotDiv).append(teamImgEl);
+    $(teamDiv).append(teamSlotDiv);
+  } 
 });
