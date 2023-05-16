@@ -58,6 +58,11 @@ form>button {
   background-color: yellow;
 }
 
+.invalid:after {
+  content: "Please enter a valid Pokemon!";
+  color: red;
+}
+
 .modal {
   display: none;
   /* Hidden by default */
