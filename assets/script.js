@@ -30,15 +30,18 @@ fetch(pokeAPIcards)
       var pokeImg = $('<img class="pokeImg rounded-t-lg">');
       $(pokeImg).attr('src', pokeImages);
       var pEl = $('<p class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-center font-sans">');
-      var clickModalBtn = $('<button class="clickModalBtn">Click</button>')
+      var clickModalBtn = $('<button class="clickModalBtn">Click</button>');
       $(pEl).text(pokemonName);
       $(pokeCard).append(pEl);
       $(pokeCard).append(pokeImg);
       $(pokeCard).append(clickModalBtn);
+      var addTeamBtn = $('<button class="addTeamBtn">+Add</button>');
+      $(pokeCard).append(addTeamBtn);
       $(pokeCards).append(pokeCard);
       // assigning datasets onto the pokeCard div tag. 
       $(pokeCard).data('name', pokemonName);
       $(pokeCard).data('num', pokeImageNumber);
+
 
     }
 
@@ -112,4 +115,22 @@ function clearPreviousModalInfoDiv() {
 $(spanClose).click(function () {
   $(modal).css("display", "none");
   clearPreviousModalInfoDiv()
+});
+
+// event listener to create a new team of pokemon
+$(document).on('click', '.addTeamBtn', function () {
+  var teamParentEl = $(this).parent()
+  var teamDataName = teamParentEl.data('name')
+  var teamDataNum = teamParentEl.data('num')
+  var teamImg = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + teamDataNum + '.png'
+  var teamDiv = $('.team');
+
+  if (teamDiv.children().length < 6) {
+    var teamSlotDiv = $('<div class="slot">');
+
+    var teamImgEl = $('<img>');
+    $(teamImgEl).attr('src', teamImg);
+    $(teamSlotDiv).append(teamImgEl);
+    $(teamDiv).append(teamSlotDiv);
+  } 
 });
