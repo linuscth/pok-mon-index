@@ -35,6 +35,7 @@ fetch(pokeAPIcards)
       $(pokeCard).append(pEl);
       $(pokeCard).append(pokeImg);
       $(pokeCard).append(clickModalBtn);
+      $(pokeCard).attr('id', pokemonName);
       $(pokeCards).append(pokeCard);
       // assigning datasets onto the pokeCard div tag. 
       $(pokeCard).data('name', pokemonName);
@@ -44,6 +45,7 @@ fetch(pokeAPIcards)
 
   }
   );
+
 $("#PokeName").autocomplete({
   source: function (request, response) {
     var results = $.ui.autocomplete.filter(pokemonList, request.term);
@@ -103,8 +105,6 @@ function clearPreviousModalInfoDiv() {
   $(pokeHeight).empty()
   $(pokeWeight).empty()
   $(pokeType).empty()
-
-
 }
 
 
@@ -112,4 +112,24 @@ function clearPreviousModalInfoDiv() {
 $(spanClose).click(function () {
   $(modal).css("display", "none");
   clearPreviousModalInfoDiv()
+});
+
+// scrolls down to searched pokemon and handles invalid searches
+$( '#search-btn' ).on('click', function() {
+  var name = $( '#PokeName' ).val();
+  if (pokemonList.includes(name)) {
+    $( "#PokeName" ).attr("style", "border:");
+    $( "#searchform").removeClass('invalid');
+    var pokeId = "#" + $( '#PokeName' ).val();
+    $('html, body').animate({
+      scrollTop: $(pokeId).offset().top},
+      'slow');
+    $( pokeId ).attr("style", "background-color: #ff9f30; transition: 0.5s");
+    setTimeout(function() {
+      $( pokeId ).attr("style", "background-color:; transition: 0.5s");
+    }, 2000);
+  } else {
+    $( "#PokeName" ).attr("style", "border: 2px solid red");
+    $( "#searchform").addClass('invalid');
+  }
 });
