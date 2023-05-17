@@ -148,17 +148,17 @@ $(document).on('click', '.addTeamBtn', function () {
   var teamDataNum = teamParentEl.data('num')
   //var teamImg = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + teamDataNum + '.png'
   // var generatedTeamDiv = $('<div class= "generatedTeam ">');
-  console.log($('.generatedTeam').length);
+  console.log($('.generatedTeam').children().length);
   if ($('.generatedTeam').children().length < 6) {
     var teamSlotDiv = $('<div class="slot">');
-
+    var removePokeCardBtn = $('<button id="removeBtn" class="rounded-full bg-red-300 " type="button">Remove</button>')
     //var teamImgEl = $('<img>');
     //$(teamImgEl).attr('src', teamImg);
     var pokeCardsClone = $(teamParentEl).clone(true).removeAttr('id');
     pokeCardsClone.find('.addTeamBtn').remove()
+    $(pokeCardsClone).append(removePokeCardBtn)
     console.log(pokeCardsClone);
     $(pokeCardsClone).appendTo(teamSlotDiv);
-    //$(teamSlotDiv).append(teamImgEl);
     $('.generatedTeam').append(teamSlotDiv);
 
   }
@@ -167,4 +167,9 @@ $(document).on('click', '.addTeamBtn', function () {
 $(document).on('click', '#creatNewTeamDiv', function () {
   var generatedTeamDiv = $('<div class= "generatedTeam flex ">');
   $(teamDiv).append(generatedTeamDiv)
+  $(this).css('display', 'none')
+})
+$(document).on('click', '#removeBtn', function () {
+  $(this).parent().parent().remove()
+
 })
