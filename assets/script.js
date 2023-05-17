@@ -12,6 +12,7 @@ var pokeWeight = $('.pokeWeight')
 var pokeType = $('.pokeType')
 var teamDiv = $('.team')
 var creatNewTeamDivBtn = $('#creatNewTeamDiv')
+var savedPokemon;
 
 //fetching to get each pokemon's name and the associatedd pic 
 fetch(pokeAPIcards)
@@ -19,7 +20,7 @@ fetch(pokeAPIcards)
     return response.json();
   })
   .then(function (data) {
-    console.log(data);
+  
 
     for (let i = 0; i < 1008; i++) {
       var pokemonName = data.results[i].name;
@@ -58,33 +59,22 @@ $("#PokeName").autocomplete({
 
 //event Listener when the click button on the poke card is clicked 
 $(document).on('click', '.clickModalBtn', function () {
-  console.log('hello');
   // the url to get pokemon stat https://pokeapi.co/api/v2/pokemon/{id or name}/
   var parentEl = $(this).parent()
-  console.log(parentEl);
   var parentDataName = parentEl.data('name')
-  console.log(parentDataName);
   var parentDataNum = parentEl.data('num')
-  console.log(parentDataNum);
   var pokedexUrl = 'https://pokeapi.co/api/v2/pokemon/' + parentDataName + '/'
-  console.log(pokedexUrl);
   fetch(pokedexUrl).then(
     function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(data);
           var chosenPokemonHeight = data.height
           var chosenPokemonWeight = data.weight
           var chosenPokemonType = []
           for (let j = 0; j < data.types.length; j++) {
             chosenPokemonType.push(data.types[j].type.name)
             chosenPokemonType.toString()
-            console.log(chosenPokemonType);
           }
-
-          console.log(chosenPokemonHeight);
-          console.log(chosenPokemonWeight);
-          console.log(chosenPokemonType);
 
           $(modalPokemonName).text(parentDataName)
           $(modalImg).attr('src', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + parentDataNum + '.png')
@@ -148,7 +138,9 @@ $(document).on('click', '.addTeamBtn', function () {
   var teamDataNum = teamParentEl.data('num')
   //var teamImg = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + teamDataNum + '.png'
   // var generatedTeamDiv = $('<div class= "generatedTeam ">');
+
   console.log($('.generatedTeam').children().length);
+
   if ($('.generatedTeam').children().length < 6) {
     var teamSlotDiv = $('<div class="slot">');
     var removePokeCardBtn = $('<button id="removeBtn" class="rounded-full bg-red-300 " type="button">Remove</button>')
@@ -156,8 +148,10 @@ $(document).on('click', '.addTeamBtn', function () {
     //$(teamImgEl).attr('src', teamImg);
     var pokeCardsClone = $(teamParentEl).clone(true).removeAttr('id');
     pokeCardsClone.find('.addTeamBtn').remove()
+
     $(pokeCardsClone).append(removePokeCardBtn)
     console.log(pokeCardsClone);
+
     $(pokeCardsClone).appendTo(teamSlotDiv);
     $('.generatedTeam').append(teamSlotDiv);
 
@@ -167,9 +161,39 @@ $(document).on('click', '.addTeamBtn', function () {
 $(document).on('click', '#creatNewTeamDiv', function () {
   var generatedTeamDiv = $('<div class= "generatedTeam flex ">');
   $(teamDiv).append(generatedTeamDiv)
-  $(this).css('display', 'none')
+ $(this).css('display', 'none')
 })
+
+
+$(document).on('click', '#saveToTeam', function () {
+  var slots = $(".generatedTeam").children();
+  for (let i=0; i < slots.length; i++) {
+    console.log(slots[i])
+    $(savedPokemon).push($(slots[i]));
+  }
+  localStorage.setItem("team", savedPokemon.innerHTML);
+}
+
+)
+ 
+function init() {
+  var team = localStorage.getItem("team");
+  console.log(team)
+  if (team === null) {
+    savedPokemon= [];
+  }
+  else {
+    savedPokemon= JSON.parse(team);
+  }
+}
+
+
+init();
+
+
+
 $(document).on('click', '#removeBtn', function () {
   $(this).parent().parent().remove()
 
 })
+
