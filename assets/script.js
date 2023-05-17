@@ -10,8 +10,8 @@ var modalImg = $('.modalImg')
 var pokeHeight = $('.pokeHeight')
 var pokeWeight = $('.pokeWeight')
 var pokeType = $('.pokeType')
-
-
+var teamDiv = $('.team')
+var creatNewTeamDivBtn = $('#creatNewTeamDiv')
 
 //fetching to get each pokemon's name and the associatedd pic 
 fetch(pokeAPIcards)
@@ -147,9 +147,9 @@ $(document).on('click', '.addTeamBtn', function () {
   var teamDataName = teamParentEl.data('name')
   var teamDataNum = teamParentEl.data('num')
   //var teamImg = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + teamDataNum + '.png'
-  var teamDiv = $('.team');
-
-  if (teamDiv.children().length < 6) {
+  // var generatedTeamDiv = $('<div class= "generatedTeam ">');
+  console.log($('.generatedTeam').length);
+  if ($('.generatedTeam').children().length < 6) {
     var teamSlotDiv = $('<div class="slot">');
 
     //var teamImgEl = $('<img>');
@@ -159,6 +159,12 @@ $(document).on('click', '.addTeamBtn', function () {
     console.log(pokeCardsClone);
     $(pokeCardsClone).appendTo(teamSlotDiv);
     //$(teamSlotDiv).append(teamImgEl);
-    $(teamDiv).append(teamSlotDiv);
+    $('.generatedTeam').append(teamSlotDiv);
+
   }
 });
+
+$(document).on('click', '#creatNewTeamDiv', function () {
+  var generatedTeamDiv = $('<div class= "generatedTeam flex ">');
+  $(teamDiv).append(generatedTeamDiv)
+})
