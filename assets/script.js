@@ -158,27 +158,27 @@ $(document).on('click', '#creatNewTeamDiv', function () {
 })
 
 
-// $(document).on('click', '#saveToTeam', function () {
-//   var slots = $(".generatedTeam").children();
-//   for (let i=0; i < slots.length; i++) {
-//     console.log(slots[i])
-//     $(savedPokemon).push($(slots[i]));
-//   }
-//   localStorage.setItem("team", savedPokemon.innerHTML);
-// }
+$(document).on('click', '#saveToTeam', function () {
+  var slots = $(".generatedTeam").children();
+  for (let i=0; i < slots.length; i++) {
+    console.log(slots[i])
+    $(savedPokemon).push($(slots[i]));
+  }
+  localStorage.setItem("team", savedPokemon.innerHTML);
+}
 
-// )
+)
  
-// function init() {
-//   var team = localStorage.getItem("team");
-//   console.log(team)
-//   if (team === null) {
-//     savedPokemon= [];
-//   }
-  // else {
-  //   savedPokemon= JSON.parse(team);
-  // }
-// }
+function init() {
+  var team = localStorage.getItem("team");
+  console.log(team)
+  if (team === null) {
+    savedPokemon= [];
+  }
+  else {
+    savedPokemon= JSON.parse(team);
+  }
+}
 
 
-// init();
+init();
