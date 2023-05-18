@@ -24,8 +24,8 @@ fetch("https://animechan.vercel.app/api/random/character?name=ash ketchum")
   .then(function (data) {
     var character = data.character;
     var quote = data.quote;
-    $( '#quote' ).text('"' + quote + '"');
-    $( '#author' ).text('-' + character);
+    $('#quote').text('"' + quote + '"');
+    $('#author').text('-' + character);
   })
 
 
@@ -118,8 +118,8 @@ $(document).on('click', '.clickModalBtn', function () {
           var pokemonNum = data.id.toString().padStart(3, '0');
           $(modalPokemonName).text(parentEl)
           $(modalImg).attr('src', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonNum + '.png')
-          $(pokeHeight).text('Height: ' + chosenPokemonHeight*0.1 + ' meters')
-          $(pokeWeight).text('Weight: ' + chosenPokemonWeight*0.1 + ' kilograms')
+          $(pokeHeight).text('Height: ' + (chosenPokemonHeight * 0.1).toFixed(2) + ' meters')
+          $(pokeWeight).text('Weight: ' + (chosenPokemonWeight * 0.1).toFixed(2) + ' kilograms')
           $(pokeType).text('Type(s): ' + chosenPokemonType.toString())
         })
       }
@@ -169,7 +169,7 @@ $('#search-btn').on('click', function () {
 });
 
 // prevents page from refreshing upon hitting enter to submit
-$( '#searchform' ).submit(function(e) {
+$('#searchform').submit(function (e) {
   e.preventDefault();
 });
 
@@ -182,11 +182,11 @@ $(document).on('click', '.addTeamBtn', function () {
     var teamSlotDiv = $('<div class="slot">');
 
     var removePokeCardBtn = $('<button id="removeBtn" class="remove-Btn ml-1 bg-red-300 " type="button">Remove</button>')
-    
+
     // creates clone of pokemon card we want to add to team
     var pokeCardsClone = $(teamParentEl).clone(true).removeAttr('id');
     pokeCardsClone.find('.addTeamBtn').remove();
-    
+
     $(pokeCardsClone).addClass('m-5')
     $(pokeCardsClone).append(removePokeCardBtn);
 
