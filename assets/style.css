@@ -139,14 +139,21 @@ form>button {
   font-family: 'Titan One';
 }
 
+.pokeType,
+.pokeWeak,
+.pokeEffectiveness {
+  text-transform: capitalize;
+}
+
+
+#author {
+  font-size: 125%;
+}
+
 #quote {
   font-size: 150%;
   font-style: italic;
   text-align: center;
-}
-
-#author {
-  font-size: 125%;
 }
 
 .anime-quote {
