@@ -8,11 +8,14 @@ body {
   flex-direction: column;
   align-items: center;
   background-image: url('pokemon.jpeg');
-  background-position: center;
+  background-attachment: fixed;
+  background-size: contain;
 }
 
 header {
   font-size: 300%;
+  color: darkred;
+  font-family: 'Titan One';
 }
 
 header>span {
@@ -32,6 +35,7 @@ header>span {
 form {
   text-align: center;
   width: 33%;
+  font-family: 'Titan One';
 }
 
 form>label,
@@ -46,15 +50,24 @@ form>button {
   padding-left: 15px;
 }
 
-#search-btn {
+#search-btn,
+.remove-Btn,
+.addTeamBtn,
+.clickModalBtn,
+.saveToTeam,
+.createTeamBtn {
   background-color: rgb(240, 159, 93);
   border-radius: 20px;
   padding: 0px 10px;
   margin-top: 20px;
 }
 
-
-#search-btn:hover {
+#search-btn:hover,
+.remove-Btn:hover,
+.addTeamBtn:hover,
+.clickModalBtn:hover,
+.saveToTeam:hover,
+.createTeamBtn:hover {
   background-color: yellow;
 }
 
@@ -108,4 +121,26 @@ form>button {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.pokeCard > p {
+  text-transform: capitalize;
+}
+
+.modalPokemonName {
+  text-transform: capitalize;
+  font-family: 'Titan One';
+}
+
+.pokeType {
+  text-transform: capitalize;
+}
+
+.PokemonStat {
+  font-family: 'Titan One';
+}
+
+.createTeamBtn,
+.saveToTeam {
+  font-family: 'Titan One';
 }
