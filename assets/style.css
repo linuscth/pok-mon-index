@@ -132,7 +132,9 @@ form>button {
   font-family: 'Titan One';
 }
 
-.pokeType {
+.pokeType,
+.pokeWeak,
+.pokeEffectiveness {
   text-transform: capitalize;
 }
 
