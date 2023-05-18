@@ -123,8 +123,15 @@ form>button {
   cursor: pointer;
 }
 
-.pokeCard > p {
+.pokeCard > p,
+.pokeType {
   text-transform: capitalize;
+}
+
+.createTeamBtn,
+.saveToTeam,
+.PokemonStat {
+  font-family: 'Titan One';
 }
 
 .modalPokemonName {
@@ -138,11 +145,27 @@ form>button {
   text-transform: capitalize;
 }
 
-.PokemonStat {
-  font-family: 'Titan One';
+#quote {
+font-size: 150%;
+font-style: italic;
+text-align: center;
+}
+  
+#author {
+  font-size: 125%;
 }
 
-.createTeamBtn,
-.saveToTeam {
-  font-family: 'Titan One';
+#quote {
+  font-size: 150%;
+  font-style: italic;
+  text-align: center;
+}
+
+.anime-quote {
+  max-width: 600px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
 }
