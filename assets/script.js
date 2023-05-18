@@ -13,6 +13,8 @@ var pokeType = $('.pokeType')
 var teamDiv = $('.team')
 var creatNewTeamDivBtn = $('#creatNewTeamDiv')
 var savedPokemon;
+var pokeWeak = $('.pokeWeak')
+var pokeEffectiveness = $('.pokeEffectiveness')
 
 //fetching to get each pokemon's name and the associatedd pic 
 fetch(pokeAPIcards)
@@ -53,17 +55,50 @@ $("#PokeName").autocomplete({
 $(document).on('click', '.clickModalBtn', function () {
   // grabs name of pokemon we're looking at so we can use it to fetch pokemon info
   var parentEl = $(this).siblings('p').text();
+
   var pokedexUrl = 'https://pokeapi.co/api/v2/pokemon/' + parentEl + '/'
+
   fetch(pokedexUrl).then(
     function (response) {
       if (response.ok) {
         response.json().then(function (data) {
+          console.log(data);
           var chosenPokemonHeight = data.height
           var chosenPokemonWeight = data.weight
           var chosenPokemonType = []
+          var arrWeak = [];
+          var arrEff = [];
+
           for (let j = 0; j < data.types.length; j++) {
             chosenPokemonType.push(data.types[j].type.name)
-            chosenPokemonType.toString()
+
+          }
+          for (let k = 0; k < chosenPokemonType.length; k++) {
+            var type = chosenPokemonType[k];
+            var typeEffectivenessUrl = 'https://pokeapi.co/api/v2/type/' + type + '/';
+            fetch(typeEffectivenessUrl).then(function (response) {
+              if (response.ok) {
+                response.json().then(function (data) {
+                  var arrayOfWeakness = data.damage_relations.double_damage_from
+
+                  var arrayOfEffectiveness = data.damage_relations.double_damage_to
+
+                  for (let a = 0; a < arrayOfWeakness.length; a++) {
+                    arrWeak.push(arrayOfWeakness[a].name)
+                    console.log(arrayOfWeakness[a].name);
+                  }
+                  for (let b = 0; b < arrayOfEffectiveness.length; b++) {
+                    arrEff.push(arrayOfEffectiveness[b].name)
+                    console.log(arrayOfEffectiveness[b].name);
+                  }
+                  $(pokeEffectiveness).text('effectiveness: ' + arrEff.toString())
+                  $(pokeWeak).text('weakness: ' + arrWeak.toString())
+
+                })
+              }
+            })
+
+
           }
 
           // retrieves pokemon number and formats it to work with img url
@@ -73,6 +108,9 @@ $(document).on('click', '.clickModalBtn', function () {
           $(pokeHeight).text('Height: ' + chosenPokemonHeight)
           $(pokeWeight).text('Weight: ' + chosenPokemonWeight)
           $(pokeType).text('Type(s): ' + chosenPokemonType.toString())
+          // $(pokeWeak).text('weakness: ' + text)
+          // $(pokeEffectiveness).text('effectiveness: ' + arrEff.toString())
+
         })
       }
     }
@@ -88,6 +126,8 @@ function clearPreviousModalInfoDiv() {
   $(pokeHeight).empty();
   $(pokeWeight).empty();
   $(pokeType).empty();
+  $(pokeWeak).empty();
+  $(pokeEffectiveness).empty();
 }
 
 
@@ -125,6 +165,7 @@ $(document).on('click', '.addTeamBtn', function () {
   // handles team length being more than 6
   if ($('.generatedTeam').children().length < 6) {
     var teamSlotDiv = $('<div class="slot">');
+
     var removePokeCardBtn = $('<button id="removeBtn" class="remove-Btn ml-1 bg-red-300 " type="button">Remove</button>')
     
     // creates clone of pokemon card we want to add to team
@@ -151,7 +192,7 @@ $(document).on('click', '#creatNewTeamDiv', function () {
 $(document).on('click', '#saveToTeam', function () {
   var slots = $(".generatedTeam").children();
   savedPokemon = []; // empties savedPokemon array to clear data for each save
-  for (let i=0; i < slots.length; i++) {
+  for (let i = 0; i < slots.length; i++) {
     savedPokemon.push(slots[i].outerHTML); // saves html content of each child (slot/card) so we can store and display later
   }
   localStorage.setItem("team", JSON.stringify(savedPokemon));
@@ -173,13 +214,22 @@ function init() {
       generatedTeamDiv.append($(savedPokemon[i]));
     }
     // hides create team button since we already have one
-    $( '#creatNewTeamDiv ').css('display', 'none');
+    $('#creatNewTeamDiv ').css('display', 'none');
   }
 }
-
+//event listner for the remove button
 $(document).on('click', '#removeBtn', function () {
   $(this).parent().parent().remove();
 });
+
+
+
+
+
+
+
+
+
 
 // initialize
 init();
