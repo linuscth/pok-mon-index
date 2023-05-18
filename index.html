@@ -13,6 +13,10 @@
 
     <link rel="stylesheet" href="./assets/style.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+
     <title>Pokedex Guide</title>
 </head>
 
@@ -26,15 +30,20 @@
         <div id="myModal" class="modal">
 
             <!-- Modal content -->
-            <div class="modal-content">
+            <div class="modal-content bg-yellow-100 rounded-lg">
                 <span class="close">&times;</span>
-                <div id="modalInfoDiv">
-                    <h6 class="modalPokemonName"></h6>
-                    <img class="modalImg" alt="chosen pokemon picuture">
-                    <div class="PokemonStat">
-                        <p class="pokeHeight">pokeHeight</p>
-                        <p class="pokeWeight">pokeWeight</p>
-                        <p class="pokeType">pokeType</p>
+
+                <div id="modalInfoDiv" class="flex flex-col items-center justify-center">
+                    <div class="text-5xl p-5 m-5 bg-red-200 rounded-lg">    
+                        <h6 class="modalPokemonName"></h6>
+                    </div>
+                    <div class="h-300 w-300 p-5 border-4 border-gray-500 rounded-lg bg-gray-500">
+                        <img class="modalImg" alt="Pokemon Image">
+                    </div>
+                    <div class="PokemonStat p-5 m-5 text-xl bg-yellow-200 rounded-lg">
+                        <p class="pokeHeight">Pokemon Height</p>
+                        <p class="pokeWeight">Pokemon Weight</p>
+                        <p class="pokeType">Pokemon Type</p>
                         <p class="pokeWeak">Pokemon Weakness:</p>
                         <p class="pokeEffectiveness">Pokemon Effectiveness:</p>
                     </div>
@@ -43,38 +52,27 @@
             </div>
 
         </div>
-
+        <!-- Search Input -->
         <form id="searchform">
             <label for="PokeName">Pokemon Name:</label><br>
-            <input type="text" id="PokeName" name="PokeName" placeholder="Arceus">
-            <button id="search-btn" type="button">Confirm</button>
+            <input type="text" id="PokeName" name="PokeName" placeholder="Type any Pokemon Name">
+            <button id="search-btn" type="button">Search</button>
         </form>
-        <div class="team my-6">
-            <button id="creatNewTeamDiv" class="rounded-full bg-slate-400 " type="button ">Create team</button>
-            <button id="saveToTeam" type="button">Save</button>
+
+        <div class="team my-6 flex flex-col items-center justify-center">
+            <button id="creatNewTeamDiv" class="createTeamBtn rounded-full m-2 bg-blue-400 " type="button ">Create Team</button>
+            <button id="saveToTeam" class="saveToTeam m-2 bg-blue-400" type="button">Save</button>
 
         </div>
         <div class="pokeCards grid grid-cols-5 gap-4 my-8"></div>
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
         integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="./assets/script.js"></script>
-
 
 </body>
 

@@ -1,23 +1,24 @@
-# pokèmon-index
-[Screenshot of My Application](./assets/sreen.png)
-Link to Deployed Application: https://linuscth.github.io/pokemon-index/
+# Project 1 - Pokédex Guide to Team Building
 
 ## Description
 
-Playing Pokemon for the first time can be confusing at times when it comes to what pokemon to use for battle and getting a hang of what types are effective against others. With this application, users will have access to a Pokedex (a catalog of pokemon) that contains all current existing pokemon with their own types and relevant information a player needs to know as they progress through any pokemon game, such as evolution requirements, effectiveness in battle, game debuts, region origin, etc. With this app you will also be able to create tags of 6 pokemon maximum for a team, save these teams, and be presented with what types your team is effective and weak against.
+Playing Pokémon for the first time can be confusing at times when it comes to what Pokémon to use for battle and getting a hang of what types are effective against others. The Pokédex Guide to Team Building is an application that users can refer to when building teams in various Pokémon games. Users can traverse through the directory and see every single Pokémon listed on the page as well as their types, strengths, and weaknesses, making it so that they can access information on any Pokémon at the drop of a hat.
 
-## Installation
+## Usage/Preview
 
-N/A
+Users will be able to search for any Pokémon via the searchbar and will be met with the names of any Pokémon matching that input. The autocomplete allows users to fill in the rest of input. Users can then click the "Confirm" button to be brought to that Pokémon's respective card on the page, given that the user input was valid. The form also handles invalid searches and notifies the user if the Pokémon they are searching for does not exist.
 
-## Usage
+Every Pokémon card contains a "View" button which, upon clicking, will open a modal that allows users to view more information such as the type(s), weaknesses, and strengths of that specific Pokémon.
 
-Using this Website is very easy, as you open the page, you will see the search tab and all the available Pokemon Cards. When you click on the cards, a modal will open. When you search for a pokemon, the page will scroll down to show the searched pokemon. You also have the option of adding up to 6 pokemon to your team by clicking the "add" button, or remove from team by clicking the "remove" button. When you click "save" your team will be saved in local storage.
+Pokémon can also be added to create a team of 6, which will display at the top of the page for easy access and will persist through sessions via utilization of local storage. The Pokémon can also be removed from the team to allow users to create changes.
 
-## Credits
+Live: https://linuscth.github.io/pokemon-index/
 
-N/A
+![Screenshot of the Pokédex Guide, with a searchbar at the top and various Pokémon cards listed under it](assets/preview.jpg)
 
-## License
-
-Please refer to the LICENSE in the repo.
+## Technologies Used
+* jQuery
+* jQuery UI for autocomplete feature
+* Tailwind CSS
+* PokéAPI for grabbing Pokémon information
+* Animechan API for grabbing Ash Ketchum quotes

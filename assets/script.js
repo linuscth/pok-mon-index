@@ -25,18 +25,18 @@ fetch(pokeAPIcards)
     for (let i = 0; i < 1008; i++) {
       var pokemonName = data.results[i].name;
       pokemonList.push(pokemonName);
-      var pokeCard = $('<div class="pokeCard block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">');
+      var pokeCard = $('<div class="pokeCard block rounded-lg bg-yellow-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 h-100 w-40">');
       var pokeImageNumber = (i + 1).toString().padStart(3, '0');
       var pokeImages = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokeImageNumber + '.png';
       var pokeImg = $('<img class="pokeImg rounded-t-lg">');
       $(pokeImg).attr('src', pokeImages);
       var pEl = $('<p class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 text-center font-sans">');
-      var clickModalBtn = $('<button class="clickModalBtn">Click</button>');
+      var clickModalBtn = $('<button class="clickModalBtn ml-3 my-2 bg-purple-300">View</button>');
       $(pEl).text(pokemonName);
       $(pokeCard).append(pEl);
       $(pokeCard).append(pokeImg);
       $(pokeCard).append(clickModalBtn);
-      var addTeamBtn = $('<button class="addTeamBtn">+Add</button>');
+      var addTeamBtn = $('<button class="addTeamBtn ml-9 bg-green-300">Add</button>');
       $(pokeCard).append(addTeamBtn);
       $(pokeCard).attr('id', pokemonName);
       $(pokeCards).append(pokeCard);
@@ -55,8 +55,9 @@ $("#PokeName").autocomplete({
 $(document).on('click', '.clickModalBtn', function () {
   // grabs name of pokemon we're looking at so we can use it to fetch pokemon info
   var parentEl = $(this).siblings('p').text();
-  var pokedexUrl = 'https://pokeapi.co/api/v2/pokemon/' + parentEl + '/';
-  // var pokeEffectivenessUrl = 'https://pokeapi.co/api/v2/type/' + parentEl + '/';
+
+  var pokedexUrl = 'https://pokeapi.co/api/v2/pokemon/' + parentEl + '/'
+
   fetch(pokedexUrl).then(
     function (response) {
       if (response.ok) {
@@ -164,12 +165,14 @@ $(document).on('click', '.addTeamBtn', function () {
   // handles team length being more than 6
   if ($('.generatedTeam').children().length < 6) {
     var teamSlotDiv = $('<div class="slot">');
-    var removePokeCardBtn = $('<button id="removeBtn" class="rounded-full bg-red-300 " type="button">Remove</button>')
 
+    var removePokeCardBtn = $('<button id="removeBtn" class="remove-Btn ml-1 bg-red-300 " type="button">Remove</button>')
+    
     // creates clone of pokemon card we want to add to team
     var pokeCardsClone = $(teamParentEl).clone(true).removeAttr('id');
     pokeCardsClone.find('.addTeamBtn').remove();
-
+    
+    $(pokeCardsClone).addClass('m-5')
     $(pokeCardsClone).append(removePokeCardBtn);
 
     $(pokeCardsClone).appendTo(teamSlotDiv);
@@ -180,7 +183,7 @@ $(document).on('click', '.addTeamBtn', function () {
 
 // create team button
 $(document).on('click', '#creatNewTeamDiv', function () {
-  var generatedTeamDiv = $('<div class= "generatedTeam flex ">');
+  var generatedTeamDiv = $('<div class= "generatedTeam flex items-center justify-center h-100 w-40">');
   $(teamDiv).append(generatedTeamDiv);
   $(this).css('display', 'none');
 })
@@ -205,7 +208,7 @@ function init() {
     // if we have an existing team we grab it, make a container for it
     // then display each card one by one
     savedPokemon = JSON.parse(team);
-    var generatedTeamDiv = $('<div class= "generatedTeam flex ">');
+    var generatedTeamDiv = $('<div class= "generatedTeam flex items-center justify-center h-100 w-40">');
     $(teamDiv).append(generatedTeamDiv);
     for (let i = 0; i < savedPokemon.length; i++) {
       generatedTeamDiv.append($(savedPokemon[i]));
