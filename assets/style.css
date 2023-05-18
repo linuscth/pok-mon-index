@@ -145,7 +145,12 @@ form>button {
   text-transform: capitalize;
 }
 
-
+#quote {
+font-size: 150%;
+font-style: italic;
+text-align: center;
+}
+  
 #author {
   font-size: 125%;
 }
