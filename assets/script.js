@@ -118,8 +118,8 @@ $(document).on('click', '.clickModalBtn', function () {
           var pokemonNum = data.id.toString().padStart(3, '0');
           $(modalPokemonName).text(parentEl)
           $(modalImg).attr('src', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonNum + '.png')
-          $(pokeHeight).text('Height: ' + chosenPokemonHeight)
-          $(pokeWeight).text('Weight: ' + chosenPokemonWeight)
+          $(pokeHeight).text('Height: ' + chosenPokemonHeight*0.1 + ' meters')
+          $(pokeWeight).text('Weight: ' + chosenPokemonWeight*0.1 + ' kilograms')
           $(pokeType).text('Type(s): ' + chosenPokemonType.toString())
         })
       }
@@ -233,10 +233,6 @@ function init() {
 $(document).on('click', '#removeBtn', function () {
   $(this).parent().parent().remove();
 });
-
-
-
-
 
 
 
