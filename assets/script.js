@@ -158,7 +158,7 @@ $('#search-btn').on('click', function () {
       scrollTop: $(pokeId).offset().top
     },
       'slow');
-    $(pokeId).attr("style", "background-color: #ff9f30; transition: 0.5s");
+    $(pokeId).attr("style", "background-color: #9dced1; transition: 0.5s");
     setTimeout(function () {
       $(pokeId).attr("style", "background-color:; transition: 0.5s");
     }, 2000);
@@ -166,6 +166,11 @@ $('#search-btn').on('click', function () {
     $("#PokeName").attr("style", "border: 2px solid red");
     $("#searchform").addClass('invalid');
   }
+});
+
+// prevents page from refreshing upon hitting enter to submit
+$( '#searchform' ).submit(function(e) {
+  e.preventDefault();
 });
 
 // event listener to create a new team of pokemon
