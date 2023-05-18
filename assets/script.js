@@ -224,9 +224,5 @@ $(document).on('click', '#removeBtn', function () {
 
 
 
-
-
-
-
 // initialize
 init();
