@@ -16,6 +16,19 @@ var savedPokemon;
 var pokeWeak = $('.pokeWeak')
 var pokeEffectiveness = $('.pokeEffectiveness')
 
+// grabs random pokemon quote from ash ketchum
+fetch("https://animechan.vercel.app/api/random/character?name=ash ketchum")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var character = data.character;
+    var quote = data.quote;
+    $( '#quote' ).text('"' + quote + '"');
+    $( '#author' ).text('-' + character);
+  })
+
+
 //fetching to get each pokemon's name and the associatedd pic 
 fetch(pokeAPIcards)
   .then(function (response) {
@@ -108,9 +121,6 @@ $(document).on('click', '.clickModalBtn', function () {
           $(pokeHeight).text('Height: ' + chosenPokemonHeight)
           $(pokeWeight).text('Weight: ' + chosenPokemonWeight)
           $(pokeType).text('Type(s): ' + chosenPokemonType.toString())
-          // $(pokeWeak).text('weakness: ' + text)
-          // $(pokeEffectiveness).text('effectiveness: ' + arrEff.toString())
-
         })
       }
     }
@@ -186,6 +196,7 @@ $(document).on('click', '#creatNewTeamDiv', function () {
   var generatedTeamDiv = $('<div class= "generatedTeam flex items-center justify-center h-100 w-40">');
   $(teamDiv).append(generatedTeamDiv);
   $(this).css('display', 'none');
+  $('#saveToTeam').css('display', 'block');
 })
 
 // save team button
@@ -204,6 +215,7 @@ function init() {
   // handles if local storage is empty or team is empty
   if (team === null || team === "[]") {
     savedPokemon = [];
+    $('#saveToTeam').css('display', 'none');
   } else {
     // if we have an existing team we grab it, make a container for it
     // then display each card one by one
